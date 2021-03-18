@@ -1,0 +1,67 @@
+import "./footer.scss";
+
+const Footer = () => {
+  return (
+    <>
+      <footer className="footer">
+        <div className="footer__container">
+          <div className="footer__container-company">
+            <ul>
+              <li>
+                <a href="#">About us</a>
+              </li>
+              <li>
+                <a href="#">Terms of use</a>
+              </li>
+              <li>
+                <a href="#">Privacy policy</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer__container-disclaimer">
+            <p>This is the second project of my portfolio</p>
+            <p>The images were taken from a store on alibaba</p>
+            <p>I do not support, nor condemn the material presented </p>
+          </div>
+          <div className="footer__container-follow">
+            <ul>
+              <li>
+                <a href="https://www.facebook.com/" target="_blank">
+                  <i className="fab fa-facebook-square"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.twitter.com/" target="_blank">
+                  <i className="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/" target="_blank">
+                  <i className="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer__bottom">
+          <div>
+            <span>DOZO</span>
+            <span>|</span>
+            <span>USA</span>
+          </div>
+          <div>
+            <span>
+              All rights reserved
+              <img
+                src="https://img.icons8.com/emoji/48/000000/copyright-emoji.png"
+                alt="copyright"
+              />
+            </span>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+export default Footer;

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
-import { CSSTransition } from "react-transition-group";
 import "./navbar.scss";
-
+import { Link } from "react-router-dom";
 const NavBar = () => {
   // toggle the navbar
   const [isToggle, setToggle] = useState(false);
@@ -23,46 +22,45 @@ const NavBar = () => {
   };
 
   // create a function to toggle search state
-  const toggleSearch = (e) => {
-    e.preventDefault();
+  const toggleSearch = () => {
     setSearching(!isSearching);
   };
   return (
     <>
       <header className="header">
-        <a href="/" className="navigation__toggle" onClick={toggleNav}>
+        <Link to="/" className="navigation__toggle" onClick={toggleNav}>
           {!isToggle && <i className="fas fa-bars"></i>}
-        </a>
+        </Link>
 
         <div className="header__container">
           <div className="navigation__left">
-            <a href="/" className="navigation__logo">
+            <Link to="/" className="navigation__logo">
               <Logo />
-            </a>
+            </Link>
           </div>
           <div className="navigation__right">
-            <a href="/" className="search" onClick={toggleSearch}>
+            <Link to="/search" className="search" onClick={toggleSearch}>
               {!isSearching && "Search"}
-            </a>
-            <a href="/">Log in</a>
-            <a href="/">
+            </Link>
+            <Link to="/users/login">Log in</Link>
+            <Link to="/cart">
               Cart<span>({0})</span>
-            </a>
+            </Link>
           </div>
         </div>
         {isSearching && (
           <div className="navigation__search">
             <form>
               <span>
-                <a href="/" onClick={toggleSearch}>
+                <Link to="/" onClick={toggleSearch}>
                   <i className="fas fa-times"></i>
-                </a>
+                </Link>
               </span>
               <input type="text" name="search" placeholder=" WRITE TO SEARCH" />
               <span>
-                <a href="#">
+                <Link to="/">
                   <i className="fas fa-search"></i>
-                </a>
+                </Link>
               </span>
             </form>
           </div>
@@ -71,24 +69,24 @@ const NavBar = () => {
 
       {isToggle && (
         <aside className="navigation__aside">
-          <a href="#" className="navigation__aside-close" onClick={toggleNav}>
+          <Link to="/" className="navigation__aside-close" onClick={toggleNav}>
             <i className="fas fa-times"></i>
-          </a>
+          </Link>
           <ul>
             <li>
-              <a href="#">Coats</a>
+              <Link to="/shop/coats">Coats</Link>
             </li>
             <li>
-              <a href="#">Jackets</a>
+              <Link to="/shop/jackets">Jackets</Link>
             </li>
             <li>
-              <a href="#">Hoodies</a>
+              <Link to="/shop/hoodies">Hoodies</Link>
             </li>
             <li>
-              <a href="#">Tracksuits</a>
+              <Link to="/shop/tracksuits">Tracksuits</Link>
             </li>
             <li>
-              <a href="#">Bottoms</a>
+              <Link to="/shop/bottoms">Bottoms</Link>
             </li>
           </ul>
         </aside>
