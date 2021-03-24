@@ -1,0 +1,63 @@
+.login {
+  width: 50vw;
+  height: 100vh;
+  margin: 15rem auto;
+
+  @media only screen and(max-width:659px) {
+    width: 80vw;
+  }
+
+  &__container {
+    height: 100%;
+
+    form {
+      width: 50%;
+      @media only screen and(max-width:659px) {
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+        margin-top: 1rem;
+        background-color: black;
+        padding: 0.2rem;
+        color: white;
+        border: none;
+      }
+
+      button:hover {
+        animation-name: flash;
+        animation-duration: 0.5s;
+      }
+    }
+
+    &-loginForm {
+      form {
+        display: flex;
+        flex-direction: column;
+
+        input {
+          margin-top: 1rem;
+        }
+      }
+    }
+
+    &-registerForm {
+      .form__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 0.5rem;
+
+        input {
+          margin-top: 1rem;
+        }
+
+        @media only screen and(max-width:380px) {
+          input {
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.cart {
+  position: fixed;
+  width: 20vw;
+  background-color: #f6f6f6;
+  top: 0;
+  right: 0;
+  min-height: 100vh;
+  z-index: 1000;
+  font-size: 0.7rem;
+  text-align: center;
+  display: none;
+  button {
+    width: 80%;
+    padding: 0.1rem;
+    border: none;
+    background-color: black;
+    color: white;
+    border: none;
+  }
+
+  button:hover {
+    animation-name: flash;
+    animation-duration: 0.5s;
+  }
+
+  &__container {
+    width: 95%;
+    margin: 4rem auto;
+
+    .cart__product {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+
+      &-description {
+        flex-basis: 30%;
+      }
+      &-image {
+        flex-basis: 60%;
+
+        img {
+          max-width: 70%;
+          max-height: 70%;
+        }
+      }
+    }
+  }
+}

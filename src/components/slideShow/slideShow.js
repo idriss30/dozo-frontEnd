@@ -2,7 +2,7 @@ import "./slideShow.scss";
 import burgundy from "../../assets/img/burgundy.jpg";
 import coat from "../../assets/img/beigeCoat-front.jpg";
 import jacket from "../../assets/img/grayCoat-front.jpg";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SlideShow = () => {
   const items = [burgundy, coat, jacket];
@@ -14,14 +14,29 @@ const SlideShow = () => {
   // use state to define how to animate;
   const [translatePosition, setTranslatePosition] = useState(0);
 
+  // create a function to get the width of the slider container
+  const getContainerSize = () => {
+    return sliderRef.current.offsetWidth;
+  };
+  // useEffect to stop slider from breaking while resizing
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setTranslatePosition(0);
+      setCurrentImage(0);
+    });
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  });
   const moveForward = (e) => {
     e.preventDefault();
     if (currentImage === items.length - 1) {
       return;
     }
     setCurrentImage((currentImage) => currentImage + 1);
+
     setTranslatePosition(
-      (translatePosition) => translatePosition - sliderRef.current.offsetWidth
+      (translatePosition) => translatePosition - getContainerSize()
     );
   };
 
@@ -32,7 +47,7 @@ const SlideShow = () => {
     } else {
       setCurrentImage((currentImage) => currentImage - 1);
       setTranslatePosition(
-        (translatePosition) => translatePosition + sliderRef.current.offsetWidth
+        (translatePosition) => translatePosition + getContainerSize()
       );
     }
   };
@@ -56,8 +71,8 @@ const SlideShow = () => {
           >
             {items.map((item, index) => {
               return (
-                <a key={index} href="#" className="slide" ref={sliderRef}>
-                  <img src={item} alt="photo" />
+                <a key={index} ref={sliderRef} className="slide">
+                  <img src={item} />
                 </a>
               );
             })}
