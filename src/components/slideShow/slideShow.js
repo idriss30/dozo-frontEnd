@@ -1,12 +1,8 @@
 import "./slideShow.scss";
-import burgundy from "../../assets/img/burgundy.jpg";
-import coat from "../../assets/img/beigeCoat-front.jpg";
-import jacket from "../../assets/img/grayCoat-front.jpg";
+
 import { useEffect, useRef, useState } from "react";
 
-const SlideShow = () => {
-  const items = [burgundy, coat, jacket];
-
+const SlideShow = ({ items }) => {
   // use ref to get an hold of the cliendWith
   const sliderRef = useRef(null);
   // use state to define current image
@@ -21,13 +17,17 @@ const SlideShow = () => {
   // useEffect to stop slider from breaking while resizing
   useEffect(() => {
     window.addEventListener("resize", () => {
-      setTranslatePosition(0);
-      setCurrentImage(0);
+      if (sliderRef.current) {
+        setCurrentImage(0);
+        setTranslatePosition(0);
+      }
     });
+
     return () => {
-      window.removeEventListener("resize", () => {});
+      window.removeEventListener("resize", () => "");
     };
   });
+
   const moveForward = (e) => {
     e.preventDefault();
     if (currentImage === items.length - 1) {
@@ -69,13 +69,21 @@ const SlideShow = () => {
               transition: "transform ease-out 0.45s",
             }}
           >
-            {items.map((item, index) => {
-              return (
-                <a key={index} ref={sliderRef} className="slide">
-                  <img src={item} />
-                </a>
-              );
-            })}
+            {
+              // display all the images in the slideshow
+              items.map((item) => {
+                return (
+                  <a
+                    key={item.id}
+                    ref={sliderRef}
+                    className="slide"
+                    href={`/shop/product/${item.id}`}
+                  >
+                    <img src={`/assets/img/${item.imageName}-front.jpg`} />
+                  </a>
+                );
+              })
+            }
           </div>
         </div>
 

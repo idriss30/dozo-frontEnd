@@ -14,6 +14,9 @@
     @media only screen and(max-width:895px) {
       top: 50%;
     }
+    @media only screen and(max-width:520px) {
+      top: 40%;
+    }
   }
 
   &-rightArrow {
@@ -24,6 +27,10 @@
     @media only screen and(max-width:895px) {
       top: 50%;
     }
+
+    @media only screen and(max-width:520px) {
+      top: 40%;
+    }
   }
   &__image {
     position: relative;
@@ -32,10 +39,12 @@
     margin: 10rem auto;
     white-space: nowrap;
     overflow: hidden;
-    animation-name: slideInLeft;
-    animation-duration: 1s;
     @media only screen and(max-width:895px) {
       width: 70vw;
+    }
+
+    @media only screen and(max-width:520px) {
+      height: 60vh;
     }
 
     &-wrapper {

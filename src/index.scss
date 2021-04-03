@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   font-family: monospace, Cambria, Cochin, Georgia, Times, "Times New Roman",
     serif;
   a {
@@ -13,13 +14,14 @@ body {
 // define the transition styles
 .fade-enter {
   opacity: 0;
-  transform: scale(1.2);
+  transform: scale(0.9);
 }
 .fade-enter-active {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1);
   transition-property: opacity, transform;
   transition-duration: 500ms;
+  transition-timing-function: ease-in;
 }
 .fade-exit {
   opacity: 1;

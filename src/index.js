@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
-import "animate.css";
+import "animate.css/animate.min.css";
 import App from "./App";
+import ScrollToTop from "./components/scrollToTop/scrollToTop";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <ScrollToTop />
+    <App />
+  </BrowserRouter>,
   document.getElementById("root")
 );

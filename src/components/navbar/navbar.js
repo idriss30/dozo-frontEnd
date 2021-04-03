@@ -78,14 +78,7 @@ const NavBar = () => {
 
       {isToggle && (
         <aside className="navigation__aside">
-          <Link
-            to="/"
-            className="navigation__aside-close"
-            onClick={(e) => {
-              e.preventDefault();
-              switchToggleState(isToggle);
-            }}
-          >
+          <Link to="/" className="navigation__aside-close" onClick={toggleNav}>
             <i className="fas fa-times"></i>
           </Link>
           <ul>
@@ -116,7 +109,7 @@ const NavBar = () => {
                 }}
                 to="/shop/hoodies"
               >
-                Hoodies
+                Hoodies/sweatshirts
               </Link>
             </li>
             <li>
@@ -126,17 +119,7 @@ const NavBar = () => {
                 }}
                 to="/shop/tracksuits"
               >
-                Tracksuits
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={() => {
-                  switchToggleState(isToggle);
-                }}
-                to="/shop/bottoms"
-              >
-                Bottoms
+                Tracksuits/bottoms
               </Link>
             </li>
           </ul>

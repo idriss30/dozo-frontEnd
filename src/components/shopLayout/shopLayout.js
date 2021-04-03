@@ -1,78 +1,54 @@
 import "./shopLayout.scss";
-import sweat from "../../assets/img/whiteJack-front.jpg";
 import { Link } from "react-router-dom";
+import useCustomFetch from "../../Hooks/useCustomFetch";
+import Loader from "../../components/loader/loader";
+import Error from "../../components/errors/errors";
 
-const ShopLAyout = () => {
+const ShopLayout = ({ url, text }) => {
+  // use the custom hook fetch
+  const state = useCustomFetch(url, {
+    products: [],
+  });
+  // desctructure the objects
+  const { loading, isError, data } = state;
+  // get the first product in the array
+  const firstProduct = { ...data.products[0] };
+
   return (
     <>
-      <section className="shop">
-        <div className="shop__container">
-          <div className="shop__container-display">
-            <Link to="/">
-              <img src={sweat} />
-            </Link>
-            <h1>JACKETS FOR MEN </h1>
-            <p>
-              WHETHER IT’S A DENIM JACKET OR A LEATHER BIKER JACKET FOR EVERY
-              DAY OR A WINDBREAKER JACKET OR PARKA FOR AN OUTDOORS EVENT, OUR
-              JACKET SELECTION TAPS INTO THE MINDSET OF MODERN DESIGN
-              APPRECIATION WITH NOTES OF PRACTICALITY.
-            </p>
-          </div>
-          <div className="shop__container-all">
-            <div className="shop__container-all-display">
-              <img src={sweat} />
-              <p>New</p>
-              <p>beautiful coat</p>
-              <p>$100</p>
+      {loading ? (
+        <Loader />
+      ) : isError ? (
+        <Error />
+      ) : (
+        <section className="shop">
+          <div className="shop__container">
+            <div className="shop__container-display">
+              <Link to="/">
+                <img src={`/assets/img/${firstProduct.imageName}-front.jpg`} />
+              </Link>
+              <h1> {firstProduct.category} FOR MEN </h1>
+              <p>{text}</p>
             </div>
-            <div className="shop__container-all-display">
-              <img src={sweat} />
-              <p>New</p>
-              <p>beautiful coat</p>
-              <p>$100</p>
-            </div>
-            <div className="shop__container-all-display">
-              <img src={sweat} />
-              <p>New</p>
-              <p>beautiful coat</p>
-              <p>$100</p>
-            </div>
-            <div className="shop__container-all-display">
-              <img src={sweat} />
-              <p>New</p>
-              <p>beautiful coat</p>
-              <p>$100</p>
-            </div>
-            <div className="shop__container-all-display">
-              <img src={sweat} />
-              <p>New</p>
-              <p>beautiful coat</p>
-              <p>$100</p>
-            </div>
-            <div className="shop__container-all-display">
-              <img src={sweat} />
-              <p>New</p>
-              <p>beautiful coat</p>
-              <p>$100</p>
-            </div>
-            <div className="shop__container-all-display">
-              <img src={sweat} />
-              <p>New</p>
-              <p>beautiful coat</p>
-              <p>$100</p>
-            </div>
-            <div className="shop__container-all-display">
-              <img src={sweat} />
-              <p>New</p>
-              <p>beautiful coat</p>
-              <p>$100</p>
+            <div className="shop__container-all">
+              {data.products.map((product) => {
+                return (
+                  <div className="shop__container-all-display" key={product.id}>
+                    <Link to={`/shop/product/${product.id}`}>
+                      <img src={`/assets/img/${product.imageName}-front.jpg`} />
+                    </Link>
+                    <p>{product.name}</p>
+                    <p>{product.description}</p>
+                    <p>${product.price}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };
 
-export default ShopLAyout;
+export default ShopLayout;
