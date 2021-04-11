@@ -1,4 +1,5 @@
 import "./slideShow.scss";
+import { Link } from "react-router-dom";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -24,7 +25,7 @@ const SlideShow = ({ items }) => {
     });
 
     return () => {
-      window.removeEventListener("resize", () => "");
+      window.removeEventListener("resize", () => console.log("cleared"));
     };
   });
 
@@ -56,7 +57,7 @@ const SlideShow = ({ items }) => {
     <>
       <div className="react__slider">
         <div className="react__slider-leftArrow">
-          <a href="#" onClick={moveBackward}>
+          <a href="/" onClick={moveBackward}>
             <i className="fas fa-chevron-left"></i>
           </a>
         </div>
@@ -73,14 +74,17 @@ const SlideShow = ({ items }) => {
               // display all the images in the slideshow
               items.map((item) => {
                 return (
-                  <a
+                  <Link
                     key={item.id}
                     ref={sliderRef}
                     className="slide"
-                    href={`/shop/product/${item.id}`}
+                    to={`/shop/products/${item.id}`}
                   >
-                    <img src={`/assets/img/${item.imageName}-front.jpg`} />
-                  </a>
+                    <img
+                      src={`/assets/img/${item.imageName}-front.jpg`}
+                      alt={item.name}
+                    />
+                  </Link>
                 );
               })
             }
@@ -88,7 +92,7 @@ const SlideShow = ({ items }) => {
         </div>
 
         <div className="react__slider-rightArrow">
-          <a href="#" onClick={moveForward}>
+          <a href="/" onClick={moveForward}>
             <i className="fas fa-chevron-right"></i>
           </a>
         </div>

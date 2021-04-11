@@ -1,41 +1,38 @@
 import "./shopLayout.scss";
 import { Link } from "react-router-dom";
-import useCustomFetch from "../../Hooks/useCustomFetch";
-import Loader from "../../components/loader/loader";
-import Error from "../../components/errors/errors";
+import ScrollAnimation from "react-animate-on-scroll";
 
-const ShopLayout = ({ url, text }) => {
-  // use the custom hook fetch
-  const state = useCustomFetch(url, {
-    products: [],
-  });
-  // desctructure the objects
-  const { loading, isError, data } = state;
-  // get the first product in the array
-  const firstProduct = { ...data.products[0] };
+const ShopLayout = ({ items, text }) => {
+  let firstProduct = { ...items[0] };
 
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : isError ? (
-        <Error />
-      ) : (
-        <section className="shop">
-          <div className="shop__container">
-            <div className="shop__container-display">
-              <Link to="/">
-                <img src={`/assets/img/${firstProduct.imageName}-front.jpg`} />
-              </Link>
-              <h1> {firstProduct.category} FOR MEN </h1>
-              <p>{text}</p>
-            </div>
+      <section className="shop">
+        <div className="shop__container">
+          <div className="shop__container-display">
+            <Link to={`/shop/products/${firstProduct.id}`}>
+              <img
+                src={`/assets/img/${firstProduct.imageName}-front.jpg`}
+                alt={firstProduct.name}
+              />
+            </Link>
+            <h1> {firstProduct.category} FOR MEN </h1>
+            <p>{text}</p>
+          </div>
+          <ScrollAnimation
+            animateIn="animate__animated animate__fadeIn"
+            animateOut="animate__animated animate__fadeOut"
+            duration={1}
+          >
             <div className="shop__container-all">
-              {data.products.map((product) => {
+              {items.map((product) => {
                 return (
                   <div className="shop__container-all-display" key={product.id}>
-                    <Link to={`/shop/product/${product.id}`}>
-                      <img src={`/assets/img/${product.imageName}-front.jpg`} />
+                    <Link to={`/shop/products/${product.id}`}>
+                      <img
+                        src={`/assets/img/${product.imageName}-front.jpg`}
+                        alt={product.name}
+                      />
                     </Link>
                     <p>{product.name}</p>
                     <p>{product.description}</p>
@@ -44,9 +41,9 @@ const ShopLayout = ({ url, text }) => {
                 );
               })}
             </div>
-          </div>
-        </section>
-      )}
+          </ScrollAnimation>
+        </div>
+      </section>
     </>
   );
 };

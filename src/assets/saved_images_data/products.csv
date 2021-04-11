@@ -1,8 +1,8 @@
 id,category,bestSeller,name,description,price,imageName
-1,COATS,0,"Beige  Striped Coat ","100% coton  ",100,beigeCoat
+1,COATS,1,"Brown Fur coat","100% coton a  best seller",200,fur
 2,COATS,1," Brown and black Coat","100% coton, a best seller",200,brownCoat
 3,COATS,0,"Burgundy coat","100% coton",140,uno
-4,COATS,1,"Brown Fur coat","100% coton a  best seller",200,fur
+4,COATS,0,"Beige  Striped Coat ","100% coton  ",100,beigeCoat
 5,COATS,0,"Gray Blue Striped Coat","100% coton",100,grayCoat
 6,COATS,1,"Tan long Coat","100% coton a best seller",200,light
 7,COATS,0,"Classy striped long coat","100% coton",140,stripe

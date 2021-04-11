@@ -10,9 +10,6 @@ const NavBar = () => {
   // toggle the search bar
   const [isSearching, setSearching] = useState(false);
 
-  // create a state to display the small Cart
-  const [hasProducts, setHasProducts] = useState(0);
-
   // add a function to manage overflow on state change
   const switchToggleState = (elementToSwitch) => {
     if (elementToSwitch) {
@@ -53,7 +50,7 @@ const NavBar = () => {
             </Link>
             <Link to="/users/login">Log in</Link>
             <Link to="#">
-              Cart<span>({hasProducts})</span>
+              Cart<span>(0)</span>
             </Link>
           </div>
         </div>
