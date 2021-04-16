@@ -3,11 +3,14 @@ import { useParams } from "react-router";
 import useCustomFetch from "../../Hooks/useCustomFetch";
 import Loader from "../loader/loader";
 import Error from "../errors/errors";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import CartContext from "../../Context/cart/cartContext";
 
 const ProductLayout = () => {
-  // come back to this section  later
+  // get the id from the parameters
   const { id } = useParams();
+
+  //get the product with the custom hook
   const productState = useCustomFetch(
     `http://localhost:5000/api/shop/product/${id}`,
     {
@@ -15,17 +18,38 @@ const ProductLayout = () => {
     }
   );
 
-  // useEffect to listen to image resizing
+  // use the context to get the add product dispatch from the reducer
+  const { addToCart } = useContext(CartContext);
+  // useState to manage the size
+  const [clothSize, setClothSize] = useState(null);
+
+  const handleSize = (e) => {
+    setClothSize(e.target.value);
+  };
+
+  // create a ref to show error in case userr don't select size
+  const errorRef = useRef();
+  //create a function to push product to cart
+  const pushTocart = (product) => {
+    // check if the size is empty
+    if (clothSize === null) {
+      errorRef.current.style.display = "block";
+    } else {
+      errorRef.current.style.display = "none";
+      addToCart(product);
+    }
+  };
+  // useEffect to listen to image resizing of product display
   useEffect(() => {
-    let mount = false;
     window.addEventListener("resize", () => {
-      if (!mount) {
-        resetImage();
+      if (productRef.current) {
+        setPosition(0);
+        setPrevious(0);
       }
     });
 
     return () => {
-      window.removeEventListener("resize", () => (mount = true));
+      window.removeEventListener("resize", () => "");
     };
   });
   // extract the state
@@ -49,10 +73,8 @@ const ProductLayout = () => {
   };
 
   const resetImage = () => {
-    if (productRef) {
-      setPosition(0);
-      setPrevious(0);
-    }
+    setPosition(0);
+    setPrevious(0);
   };
 
   const handleClick = (e) => {
@@ -67,7 +89,7 @@ const ProductLayout = () => {
         return;
       } else {
         setPrevious(1);
-        setPosition((position) => position - 1 + getImageHeight());
+        setPosition((position) => position + 1 + getImageHeight());
       }
     } else if (e.target.src.includes("back")) {
       if (previous === 0) {
@@ -75,7 +97,7 @@ const ProductLayout = () => {
         setPosition((position) => -(position + 2) * getImageHeight());
       } else if (previous === 1) {
         setPrevious(2);
-        setPosition((position) => position - getImageHeight());
+        setPosition((position) => position - 1 - getImageHeight());
       } else {
         return;
       }
@@ -95,7 +117,7 @@ const ProductLayout = () => {
                 className="product__container__presentation-wrapper"
                 style={{
                   transform: `translateY(${position}px)`,
-                  transition: "transform ease-out 0.45s",
+                  transition: "transform ease-in-out 1s",
                 }}
               >
                 {productImages.map((imageSrc) => {
@@ -131,27 +153,40 @@ const ProductLayout = () => {
               <h2>{data.product.name}</h2>
               <h3>{data.product.description}</h3>
               <p>Select Your Size</p>
-              <label htmlFor="small">
-                <input id="small" type="radio" name="size" value="small" />
-                SM
-              </label>
-              <label htmlFor="medium">
-                <input
-                  id="medium"
-                  type="radio"
-                  name="size"
-                  value="medium"
-                  defaultChecked
-                />
-                MD
-              </label>
-              <label htmlFor="large">
-                <input id="large" type="radio" name="size" />
-                LG
-              </label>
+              <div onChange={handleSize}>
+                <label htmlFor="small">
+                  <input id="small" type="radio" name="size" value="small" />
+                  SM
+                </label>
+                <label htmlFor="medium">
+                  <input id="medium" type="radio" name="size" value="medium" />
+                  MD
+                </label>
+                <label htmlFor="large">
+                  <input id="large" type="radio" name="size" value="large" />
+                  LG
+                </label>
+              </div>
               <p>${data.product.price}</p>
+              <p ref={errorRef} className="description__error">
+                you need to select a size
+              </p>
               <div>
-                <button>Add to Cart</button>
+                <button
+                  onClick={() => {
+                    pushTocart({
+                      id: data.product.id,
+                      price: data.product.price,
+                      qty: 1,
+                      name: data.product.name,
+                      size: clothSize,
+                      image: data.product.imageName,
+                      uniqueId: Math.random() + data.product.id,
+                    });
+                  }}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>

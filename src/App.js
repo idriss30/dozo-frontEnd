@@ -8,8 +8,11 @@ import Loader from "./components/loader/loader";
 import Error from "./components/errors/errors";
 import Login from "./components/users/user";
 import ProductLayout from "./components/productLayout/productLayout";
+import Cart from "./components/cart/cart";
+import CartContext from "./Context/cart/cartContext";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { useContext, useEffect } from "react";
 
 function App() {
   // define the location for transition
@@ -57,9 +60,17 @@ function App() {
     (product) => product.category === "jackets".toUpperCase()
   );
 
+  // implement SessionStorage for my cart products
+  const { products } = useContext(CartContext);
+  // use effect because session is side effect
+  useEffect(() => {
+    sessionStorage.setItem("cart", JSON.stringify(products));
+  }, [products]);
+
   return (
     <>
       <NavBar />
+
       {loading ? (
         <Loader />
       ) : isError ? (
@@ -70,6 +81,9 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Landing data={prodBestSellers} />
+              </Route>
+              <Route exact path="/shop/cart">
+                <Cart />
               </Route>
               <Route exact path="/shop/products/:id">
                 <ProductLayout items={data.products} />

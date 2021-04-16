@@ -146,7 +146,8 @@
     }
   }
 }
-aside {
+
+.navigation__aside {
   width: 100%;
   position: fixed;
   top: 0;
@@ -185,6 +186,90 @@ aside {
     }
     a:hover {
       font-weight: bold;
+    }
+  }
+}
+
+.navigation__cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #f6f6f6;
+  height: 100vh;
+  width: 25vw;
+  overflow-y: auto;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  z-index: 200;
+  font-size: 0.9rem;
+
+  @media only screen and(max-width: 900px) {
+    width: 35vw;
+  }
+
+  @media only screen and(max-width:680px) {
+    width: 50vw;
+    font-size: 0.7rem;
+  }
+
+  &-group {
+    display: flex;
+    width: 95%;
+
+    justify-content: space-around;
+    margin-top: 1rem;
+  }
+
+  &__container {
+    margin-top: 6rem;
+    height: 60vh;
+    span {
+      align-self: center;
+      flex-basis: 50%;
+    }
+    p {
+      i {
+        cursor: pointer;
+        align-self: center;
+      }
+    }
+    img {
+      max-width: 15%;
+      max-height: 15%;
+
+      @media only screen and(max-width:680px) {
+        max-width: 30%;
+        max-height: 25%;
+      }
+    }
+  }
+
+  .cart__button {
+    margin-top: 2rem;
+
+    &-link {
+      text-decoration: none;
+      background-color: black;
+      color: white !important;
+      display: block;
+      width: 50%;
+      margin: 2rem auto;
+      text-align: center;
+
+      @media only screen and(max-width:520px) {
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  .aside__close {
+    font-size: 1.2rem;
+    i {
+      margin-top: 2rem;
+      float: right;
+      margin-right: 2rem;
+      cursor: pointer;
     }
   }
 }

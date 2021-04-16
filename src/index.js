@@ -5,11 +5,13 @@ import "animate.css/animate.min.css";
 import App from "./App";
 import ScrollToTop from "./components/scrollToTop/scrollToTop";
 import { BrowserRouter } from "react-router-dom";
-
+import CartState from "./Context/cart/cartState";
 ReactDOM.render(
   <BrowserRouter>
     <ScrollToTop />
-    <App />
+    <CartState>
+      <App />
+    </CartState>
   </BrowserRouter>,
   document.getElementById("root")
 );

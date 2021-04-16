@@ -1,14 +1,26 @@
 import { ADD, REMOVE, INCREMENT, DECREMENT } from "./action";
 import cartContext from "./cartContext";
-import cartReducer from "./cartReducer";
+import { cartReducer } from "./cartReducer";
 import { useReducer } from "react";
 
-const cartState = ({ children }) => {
+const CartState = ({ children }) => {
+  // check if cart is present
+  const checkStorage = sessionStorage.getItem("cart");
+  // if present convert back to regular object
+  let retrievedProducts = JSON.parse(checkStorage);
+
+  // get the initial quantity if cart is in session
+  let initialQty = null;
+  if (retrievedProducts) {
+    initialQty = retrievedProducts.reduce((acc, product) => {
+      return acc + product.qty;
+    }, 0);
+  }
+
   // define the initial State
   const initialCartState = {
-    products: [],
-    qty: 0,
-    total: null,
+    products: retrievedProducts || [],
+    qty: initialQty || 0,
   };
 
   // define the differents actions in the state
@@ -19,32 +31,32 @@ const cartState = ({ children }) => {
     });
   };
 
-  const removeFromCart = (productId) => {
+  const removeFromCart = (product) => {
     dispatch({
       type: REMOVE,
-      payload: productId,
+      payload: product,
     });
   };
 
-  const incrementQuantity = (productId) => {
+  const incrementQuantity = (identifier) => {
     dispatch({
       type: INCREMENT,
-      payload: productId,
+      payload: identifier,
     });
   };
 
-  const decrementQuantity = (productId) => {
-    dispatch({ type: DECREMENT, payload: productId });
+  const decrementQuantity = (identifier) => {
+    dispatch({ type: DECREMENT, payload: identifier });
   };
 
   // use Reducer to updtate the carts
   const [state, dispatch] = useReducer(cartReducer, initialCartState);
+
   return (
     <cartContext.Provider
       value={{
         products: state.products,
         qty: state.qty,
-        total: state.total,
         addToCart,
         removeFromCart,
         incrementQuantity,
@@ -56,4 +68,4 @@ const cartState = ({ children }) => {
   );
 };
 
-export default cartState;
+export default CartState;

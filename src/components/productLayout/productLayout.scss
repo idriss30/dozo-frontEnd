@@ -74,6 +74,13 @@
         animation-name: flash;
         animation-duration: 0.5s;
       }
+
+      .description__error {
+        display: none;
+        font-weight: bold;
+        font-style: italic;
+        color: red;
+      }
     }
   }
 }
