@@ -1,7 +1,7 @@
 // header{
 .header {
   width: 100%;
-  max-height: 90px;
+  height: 90px;
   position: fixed;
   top: 0;
   z-index: 100;
@@ -55,7 +55,7 @@
         color: black;
       }
       .search {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         text-align: left;
         margin-right: 3rem;
         text-decoration: underline;
@@ -83,8 +83,8 @@
 
     #Layer_1 {
       width: 14rem;
-      height: 14rem;
-      margin-top: -4rem;
+      max-height: 12rem;
+      margin-top: -3rem;
 
       @media only screen and(max-width:420px) {
         width: 10rem;
@@ -208,7 +208,7 @@
   }
 
   @media only screen and(max-width:680px) {
-    width: 50vw;
+    width: 70vw;
     font-size: 0.7rem;
   }
 

@@ -18,7 +18,7 @@ const Cart = () => {
       return accum + prod.qty * prod.price;
     }, 0);
     setMyTotal(getTotal);
-  }, [products]);
+  }, [products, qty]);
 
   // create a function to dispatch increment and decrement
   const handleDecrement = (product) => {

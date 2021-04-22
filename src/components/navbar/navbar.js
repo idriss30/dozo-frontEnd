@@ -32,7 +32,8 @@ const NavBar = () => {
   };
 
   // create a function to toggle search state
-  const toggleSearch = () => {
+  const toggleSearch = (e) => {
+    e.preventDefault();
     setSearching(!isSearching);
   };
 

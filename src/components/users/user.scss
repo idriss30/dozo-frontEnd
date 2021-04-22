@@ -4,9 +4,12 @@
   margin: 15rem auto;
 
   @media only screen and(max-width:659px) {
-    width: 80vw;
+    width: 85vw;
   }
 
+  input {
+    border: 0.5px solid;
+  }
   &__container {
     height: 100%;
 
@@ -50,6 +53,7 @@
 
         input {
           margin-top: 1rem;
+          width: 97%;
         }
 
         @media only screen and(max-width:380px) {

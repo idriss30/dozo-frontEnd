@@ -1,7 +1,7 @@
 id,category,bestSeller,name,description,price,imageName
 1,COATS,1,"Brown Fur coat","100% coton a  best seller",200,fur
 2,COATS,1," Brown and black Coat","100% coton, a best seller",200,brownCoat
-3,COATS,0,"Burgundy coat","100% coton",140,uno
+3,COATS,1,"Burgundy coat","100% coton a best seller",140,uno
 4,COATS,0,"Beige  Striped Coat ","100% coton  ",100,beigeCoat
 5,COATS,0,"Gray Blue Striped Coat","100% coton",100,grayCoat
 6,COATS,1,"Tan long Coat","100% coton a best seller",200,light
@@ -15,17 +15,17 @@ id,category,bestSeller,name,description,price,imageName
 14,HOODIES,0,"Yellow hoodie","100% coton",70,yellowSweat
 15,SWEATSHIRTS,1,"White red and blue Sweatshirt","100%coton a best seller",80,whitered
 16,SWEATSHIRTS,0,"White Black and Yellow","100% coton",80,whiteyellow
-17,SWEATSHIRTS,0,"Multicolor sweatshirt","100% coton",80,sweat
-18,SWEATSHIRTS,0,"Gray and Black","100% coton",80,sweata
+17,SWEATSHIRTS,1,"Multicolor sweatshirt","100% coton",80,sweat
+18,SWEATSHIRTS,0,"Gray and Black"," 100% coton a best seller",80,sweata
 19,SWEATSHIRTS,0,"White and tan","100% coton",80,sweaty
 20,JACKETS,1,"Black Jacket","100% coton a best seller",80,blackJack
 21,JACKETS,0,"Gray Jacket","100% coton",80,grayJack
 22,JACKETS,1,"White Jacket","100% coton",80,whiteJack
 23,JACKETS,0,"Tricolor Jacket","100% coton",80,eleven
 24,JACKETS,0,"Military Style","100% coton",100,three
-25,JACKETS,0,"Classic Vest","100% coton",100,vest
+25,JACKETS,1,"Classic Vest","100% coton a best seller",100,vest
 26,JACKETS,0,"Brown jacket","100% coton",100,six
-27,JACKETS,0,"black and Gray jacket","100% coton",100,sept
+27,JACKETS,1,"black and Gray jacket","100% coton a best seller",100,sept
 29,TRACKSUITS,1,"Yellow Tracksuit","100% coton a best seller",100,ta
 30,TRACKSUITS,0,"blue and White tracksuit","100% coton",100,blackTrack
 31,TRACKSUITS,0,"Black and White","100% coton",100,t

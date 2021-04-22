@@ -16,8 +16,10 @@
     top: 30%;
     left: 2rem;
     z-index: 80;
-    @media only screen and(max-width:895px) {
-      top: 50%;
+    @media only screen and(max-width:420px) {
+      top: 60%;
+      left: 0.5rem;
+      font-size: 1.2rem;
     }
   }
 
@@ -26,8 +28,10 @@
     top: 30%;
     right: 2rem;
     z-index: 80;
-    @media only screen and(max-width:895px) {
-      top: 50%;
+    @media only screen and(max-width:420px) {
+      top: 60%;
+      right: 0.5rem;
+      font-size: 1.2rem;
     }
   }
   &__image {
@@ -38,11 +42,11 @@
     white-space: nowrap;
     overflow: hidden;
     @media only screen and(max-width:895px) {
-      width: 70vw;
+      width: 90vw;
     }
 
     @media only screen and(max-width:520px) {
-      height: 60vh;
+      height: 70vh;
     }
 
     &-wrapper {
