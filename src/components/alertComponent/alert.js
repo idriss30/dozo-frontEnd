@@ -8,10 +8,11 @@ const Alert = ({ alertText }) => {
 
   // use hook to set a timer to remove the alert after 3seconde
   useEffect(() => {
-    let timer = () =>
+    let timer = () => {
       setTimeout(() => {
         setShowing(false);
       }, 3000);
+    };
     let timerId = timer();
 
     return () => {

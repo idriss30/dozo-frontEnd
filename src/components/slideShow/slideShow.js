@@ -67,7 +67,7 @@ const SlideShow = ({ items }) => {
             className="react__slider__image-wrapper"
             style={{
               transform: `translateX(${translatePosition}px)`,
-              transition: "transform ease-out 0.45s",
+              transition: "transform ease-in-out 1s",
             }}
           >
             {

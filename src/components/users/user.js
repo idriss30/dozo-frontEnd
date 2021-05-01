@@ -6,7 +6,7 @@ import UserContext from "../../Context/user/userContext";
 
 const UserSection = () => {
   // destructure the register and login method from the context
-  const { register } = useContext(UserContext);
+  const { register, login } = useContext(UserContext);
 
   // manage error with state
   // check if error
@@ -103,80 +103,110 @@ const UserSection = () => {
     setHasAlert(false);
     registerForm.current.reset();
   };
-  //  reate a ref or the register  form to clear it out
+  //  create a ref or the register  form to clear it out
   const registerForm = useRef();
+
+  // handle login part
+  // define function to handle the login form change
+  const handleLoginChange = (e) => {
+    if (e.target.name === "username") {
+      setloginUsername(e.target.value);
+    } else {
+      setLoginPassword(e.target.value);
+    }
+  };
+
+  // create new state for input instead of using the same
+  const [loginUsername, setloginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  // function to submit the form
+
+  const submitLogin = async (e) => {
+    e.preventDefault();
+    const userData = { loginUsername, loginPassword };
+    login(userData);
+  };
+
   return (
-    <>
-      <div className="login">
-        <h2>Do you have an account ?</h2>
-        <p>Login</p>
+    <div className="login">
+      <h2>Do you have an account ?</h2>
+      <p>Login</p>
 
-        <div className="login__container">
-          <div className="login__container-loginForm">
-            <form className="login__form" action="/" method="POST">
-              <input type="text" name="username" placeholder="username" />
-              <input type="text" name="password" placeholder="password" />
-              <button>log in</button>
-            </form>
-            <p>or </p>
-            <p>Sign up</p>
-          </div>
-          <div className="login__container-registerForm">
-            <form
-              onChange={handleFormChange}
-              onSubmit={handleRegisterSubmit}
-              ref={registerForm}
-            >
-              <div className="form__container">
-                <input
-                  type="text"
-                  name="firstname"
-                  placeholder="first"
-                  required
-                />
-                <input
-                  type="text"
-                  name="lastname"
-                  placeholder="last"
-                  required
-                />
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="username"
-                  required
-                />
-                <input type="email" name="email" placeholder="email" required />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  required
-                />
-                <input
-                  type="password"
-                  name="confirm"
-                  placeholder="confirm password"
-                  required
-                />
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="address"
-                  required
-                />
-                <input type="text" name="city" placeholder="city" required />
-                <input type="text" name="state" placeholder="state" required />
-                <input type="text" name="zip" placeholder="zip" required />
-              </div>
-
-              <button type="submit">Sign Up</button>
-            </form>
-          </div>
+      <div className="login__container">
+        <div className="login__container-loginForm">
+          <form
+            className="login__form"
+            onSubmit={submitLogin}
+            onChange={handleLoginChange}
+          >
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              required
+            />
+            <button>log in</button>
+          </form>
+          <p>or </p>
+          <p>Sign up</p>
         </div>
-        {hasAlert && <Alert alertText={alertMessage} />}
+        <div className="login__container-registerForm">
+          <form
+            onChange={handleFormChange}
+            onSubmit={handleRegisterSubmit}
+            ref={registerForm}
+          >
+            <div className="form__container">
+              <input
+                type="text"
+                name="firstname"
+                placeholder="first"
+                required
+              />
+              <input type="text" name="lastname" placeholder="last" required />
+              <input
+                type="text"
+                name="username"
+                placeholder="username"
+                required
+              />
+              <input type="email" name="email" placeholder="email" required />
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                required
+              />
+              <input
+                type="password"
+                name="confirm"
+                placeholder="confirm password"
+                required
+              />
+              <input
+                type="text"
+                name="address"
+                placeholder="address"
+                required
+              />
+              <input type="text" name="city" placeholder="city" required />
+              <input type="text" name="state" placeholder="state" required />
+              <input type="text" name="zip" placeholder="zip" required />
+            </div>
+
+            <button type="submit">Sign Up</button>
+          </form>
+        </div>
       </div>
-    </>
+
+      {hasAlert && <Alert alertText={alertMessage} />}
+    </div>
   );
 };
 

@@ -3,7 +3,9 @@
   height: 100vh;
   margin: 10rem 0;
   position: relative;
-
+  @media only screen and(max-width:1024px) {
+    height: 70vh;
+  }
   @media only screen and(max-width:420px) {
     height: 70vh;
   }
@@ -16,7 +18,7 @@
     top: 30%;
     left: 2rem;
     z-index: 80;
-    @media only screen and(max-width:420px) {
+    @media only screen and(max-width:890px) {
       top: 60%;
       left: 0.5rem;
       font-size: 1.2rem;
@@ -28,7 +30,7 @@
     top: 30%;
     right: 2rem;
     z-index: 80;
-    @media only screen and(max-width:420px) {
+    @media only screen and(max-width:890px) {
       top: 60%;
       right: 0.5rem;
       font-size: 1.2rem;

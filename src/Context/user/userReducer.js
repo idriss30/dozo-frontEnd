@@ -9,17 +9,27 @@ export const userReducer = (state, action) => {
       };
 
     case LOGIN:
-      break;
+      return {
+        ...state,
+        user: action.payload,
+      };
 
     case DELETE_USER:
-      break;
+      return {
+        ...state,
+        user: null,
+      };
 
     case UPDATE_USER:
-      break;
+      return {
+        ...state,
+        user: action.payload,
+      };
+
     case RESET:
       return {
         ...state,
-        message: "",
+        user: null,
       };
 
     default:

@@ -11,6 +11,7 @@ import ProductLayout from "./components/productLayout/productLayout";
 import Cart from "./components/cart/cart";
 import CartContext from "./Context/cart/cartContext";
 
+import Profile from "./components/users/profile";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useContext, useEffect } from "react";
 
@@ -119,6 +120,9 @@ function App() {
 
               <Route exact path="/users/login">
                 <Login />
+              </Route>
+              <Route exact path="/users/profile">
+                <Profile />
               </Route>
             </Switch>
           </CSSTransition>

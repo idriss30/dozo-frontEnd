@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import CartContext from "../../Context/cart/cartContext";
+import UserContext from "../../Context/user/userContext";
 const NavBar = () => {
   // toggle the navbar
   const [isToggle, setToggle] = useState(false);
@@ -57,6 +58,10 @@ const NavBar = () => {
       navigationRightRef.current.style.display = "flex";
     }
   }, [location]);
+
+  // define the username
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <header className="header">
@@ -74,9 +79,15 @@ const NavBar = () => {
             <Link to="#" className="search" onClick={toggleSearch}>
               {!isSearching && "Search"}
             </Link>
-            <Link to="/users/login">Log in</Link>
+            <Link to={user === "guest" ? "/users/login" : "/users/profile"}>
+              {user === "guest" ? (
+                "log in"
+              ) : (
+                <i className="fas fa-user-cog"></i>
+              )}
+            </Link>
             <Link to="#" onClick={toggleCart}>
-              Cart
+              <i className="fas fa-shopping-cart"></i>
               <span>({qty})</span>
             </Link>
           </div>
@@ -99,7 +110,6 @@ const NavBar = () => {
           </div>
         )}
       </header>
-
       {isToggle && (
         <aside className="navigation__aside">
           <Link to="/" className="navigation__aside-close" onClick={toggleNav}>
@@ -149,7 +159,6 @@ const NavBar = () => {
           </ul>
         </aside>
       )}
-
       {cartShow && (
         <aside className="navigation__cart">
           <div className="aside__close">
@@ -158,9 +167,7 @@ const NavBar = () => {
               onClick={() => {
                 setCartShow(false);
               }}
-            >
-              {" "}
-            </i>
+            ></i>
           </div>
           <div className="navigation__cart__container">
             {products.map((product) => {
