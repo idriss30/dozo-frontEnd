@@ -56,9 +56,10 @@
           width: 97%;
         }
 
-        @media only screen and(max-width:380px) {
+        @media only screen and(max-width:420px) {
+          column-gap: 0.2rem;
           input {
-            width: 90%;
+            width: 95%;
           }
         }
       }

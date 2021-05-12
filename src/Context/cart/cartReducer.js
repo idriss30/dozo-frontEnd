@@ -1,4 +1,4 @@
-import { ADD, REMOVE, INCREMENT, DECREMENT } from "./action";
+import { ADD, REMOVE, INCREMENT, DECREMENT, RESET } from "./action";
 
 // create the cart Reducer
 export const cartReducer = (state, action) => {
@@ -70,6 +70,14 @@ export const cartReducer = (state, action) => {
         ...state,
         qty: state.qty - 1,
       };
+
+    case RESET:
+      return {
+        ...state,
+        qty: action.payload.qty,
+        products: action.payload.products,
+      };
+
     default:
       throw new Error();
   }

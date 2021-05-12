@@ -1,4 +1,4 @@
-import { ADD, REMOVE, INCREMENT, DECREMENT } from "./action";
+import { ADD, REMOVE, INCREMENT, DECREMENT, RESET } from "./action";
 import cartContext from "./cartContext";
 import { cartReducer } from "./cartReducer";
 import { useReducer } from "react";
@@ -49,6 +49,11 @@ const CartState = ({ children }) => {
     dispatch({ type: DECREMENT, payload: identifier });
   };
 
+  const reset = () => {
+    sessionStorage.removeItem("cart"); // remove cart from storage before dispatching
+
+    dispatch({ type: RESET, payload: { qty: 0, products: [] } });
+  };
   // use Reducer to updtate the carts
   const [state, dispatch] = useReducer(cartReducer, initialCartState);
 
@@ -61,6 +66,7 @@ const CartState = ({ children }) => {
         removeFromCart,
         incrementQuantity,
         decrementQuantity,
+        reset,
       }}
     >
       {children}

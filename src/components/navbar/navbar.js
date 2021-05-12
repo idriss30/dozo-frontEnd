@@ -4,7 +4,9 @@ import "./navbar.scss";
 import { Link } from "react-router-dom";
 import CartContext from "../../Context/cart/cartContext";
 import UserContext from "../../Context/user/userContext";
-const NavBar = () => {
+import SearchForm from "../../components/Search/searchForm";
+
+const NavBar = ({ productArray }) => {
   // toggle the navbar
   const [isToggle, setToggle] = useState(false);
   // toggle the search bar
@@ -93,21 +95,7 @@ const NavBar = () => {
           </div>
         </div>
         {isSearching && (
-          <div className="navigation__search">
-            <form>
-              <span>
-                <Link to="#" onClick={toggleSearch}>
-                  <i className="fas fa-times"></i>
-                </Link>
-              </span>
-              <input type="text" name="search" placeholder=" WRITE TO SEARCH" />
-              <span>
-                <Link to="/">
-                  <i className="fas fa-search"></i>
-                </Link>
-              </span>
-            </form>
-          </div>
+          <SearchForm closeForm={toggleSearch} products={productArray} />
         )}
       </header>
       {isToggle && (
@@ -159,6 +147,7 @@ const NavBar = () => {
           </ul>
         </aside>
       )}
+
       {cartShow && (
         <aside className="navigation__cart">
           <div className="aside__close">

@@ -56,6 +56,7 @@ const UserState = ({ children }) => {
   // initial state
   const initialState = {
     user: cookies.username || "guest",
+    isLog: cookies.username ? true : false,
   };
 
   // define the differents action
@@ -126,7 +127,6 @@ const UserState = ({ children }) => {
       removeCookie("username", { path: "/" });
       setAlert(true);
       setAlertMessage("your account has been updated! please login again");
-
       setTimeout(() => {
         // redirect after 2s
         window.location.href = "http://localhost:3000/users/login";
@@ -182,7 +182,7 @@ const UserState = ({ children }) => {
     <UserContext.Provider
       value={{
         user: state.user,
-
+        isLog: state.isLog,
         register,
         login,
         reset, // which is signing out

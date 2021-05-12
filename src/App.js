@@ -10,6 +10,7 @@ import Login from "./components/users/user";
 import ProductLayout from "./components/productLayout/productLayout";
 import Cart from "./components/cart/cart";
 import CartContext from "./Context/cart/cartContext";
+import CheckOutState from "./components/checkout/checkOutState";
 
 import Profile from "./components/users/profile";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -70,7 +71,7 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar productArray={data.products} />
 
       {loading ? (
         <Loader />
@@ -116,6 +117,9 @@ function App() {
                   text="FEW THINGS DENOTE SOPHISTICATION LIKE OUR COLLECTION OF TRACKSUITS FOR MEN, WHETHER YOU WEAR A CASUAL, OR TAILORED. THIS IS AN ITEM THAT CAN BRING COHESION TO YOUR LOOK, WHETHER IT BE REFINED OR RELAXED"
                   items={prodTracksuits}
                 />
+              </Route>
+              <Route exact path="/shop/cart/checkout">
+                <CheckOutState />
               </Route>
 
               <Route exact path="/users/login">
