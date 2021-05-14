@@ -68,6 +68,9 @@ const Checkout = () => {
   useEffect(() => {
     // set variable again to prevent leak
     let isMounted = false;
+    if (products.length === 0) {
+      return (window.location.href = "http://localhost:3000");
+    }
     axios
       .post("http://localhost:5000/api/stripe/paymentIntent", { products })
       .then((res) => {
@@ -88,6 +91,7 @@ const Checkout = () => {
       isMounted = true;
     };
   }, [products]);
+
   // create a function to change set the state based on input change
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -145,6 +149,7 @@ const Checkout = () => {
   const handleFormSubmit = async (e) => {
     setAlert(false);
     e.preventDefault();
+
     const userInfo = {
       first,
       last,
@@ -153,6 +158,7 @@ const Checkout = () => {
       city,
       state,
       zip,
+      id: userDetail ? userDetail.id : null,
     };
 
     // check the email
@@ -217,8 +223,7 @@ const Checkout = () => {
         setAlert(true);
         setAlertMessage("your order has been placed");
         setTimeout(() => {
-          reset();
-          window.location.href = "http://localhost:3000";
+          reset(); // dispatch remove products from cart
         }, 1500);
       }
     }

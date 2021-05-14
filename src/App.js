@@ -11,7 +11,7 @@ import ProductLayout from "./components/productLayout/productLayout";
 import Cart from "./components/cart/cart";
 import CartContext from "./Context/cart/cartContext";
 import CheckOutState from "./components/checkout/checkOutState";
-
+import NotFound from "./components/404/404";
 import Profile from "./components/users/profile";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useContext, useEffect } from "react";
@@ -127,6 +127,10 @@ function App() {
               </Route>
               <Route exact path="/users/profile">
                 <Profile />
+              </Route>
+
+              <Route path="/">
+                <NotFound />
               </Route>
             </Switch>
           </CSSTransition>

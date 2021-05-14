@@ -106,7 +106,11 @@ const UserState = ({ children }) => {
       setAlert(true);
       setAlertMessage("there was an error fetching user");
     } else if (message === "success") {
-      setCookies("username", username, { path: "/", maxAge: 3600 });
+      setCookies("username", username, {
+        path: "/",
+        maxAge: 3600,
+        sameSite: "lax",
+      });
       window.location.href = "http://localhost:3000/users/profile";
 
       dispatch({
